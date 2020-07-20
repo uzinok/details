@@ -1,15 +1,130 @@
-<include src="src/template/head.html"></include>
-<div style="display: none;">
-  <include src="build/img/sprite.svg"></include>
-</div>
-<include src="src/template/header.html"></include>
-    <main>
+<!DOCTYPE html>
+<html lang="en">
 
-        <h2>Hello</h2>
-        <svg width="300" class="footer-developer-link__img" role="img">
-          <use xlink:href="#cat-logo"></use>
-        </svg>
-        <img width="300" src="img/img.jpg" alt="#">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 
-    </main>
-<include src="src/template/footer.html"></include>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+    }
+
+    .wrap {
+      max-width: 768px;
+      margin: 0 auto;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+
+    .del {
+      position: relative;
+    }
+
+    .del::before,
+    .del::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: red;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(5deg);
+    }
+
+    .del::after {
+      transform: translate(-50%, -50%) rotate(-5deg);
+    }
+  </style>
+
+  <script src="./js/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1>примеры спойлеров и кастомный &lt;details&gt;</h1>
+
+    <h2>&lt;details&gt;</h2>
+    <details>
+      скрытый текст
+    </details>
+
+    <h2>&lt;details&gt; &lt;summary&gt;</h2>
+    <details>
+      <summary>summary</summary>
+      скрытый текст
+    </details>
+
+    <h2>&lt;div&gt; &lt;a&gt;</h2>
+    <div class="spoiler-block del">
+      <a href="#" class="spoiler-title">неправильный спойлер</a>
+      <div class="spoiler-content">
+        даже не стал переделывать на ванильный js
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('.spoiler-title').click(function () {
+          $(this).parent().children('div.spoiler-content').toggle('fast');
+          return false;
+        });
+      });
+    </script>
+    <style>
+      .spoiler-content {
+        display: none;
+        /**скрываем блок контента спойлера**/
+        padding: 15px 20px;
+        /**добавляем внутренний отступ**/
+      }
+
+      /**Стили блока с текстом внутри спойлера**/
+      .spoiler-content {
+        display: none;
+        /**скрываем блок контента спойлера**/
+        padding: 15px 20px;
+        /**добавляем внутренний отступ**/
+        border: 1px solid #ccc;
+        /**рамка блока контента спойлера**/
+        margin-top: 5px;
+        /**отступ сверху**/
+        background: #F0F0F0;
+        /**фон блока контента спойлера**/
+      }
+
+      /**Стили блока оборачивающего каждый блок**/
+      .spoiler-block {
+        margin-top: 10px;
+      }
+
+      /**Стили кнопки спойлера**/
+      .spoiler-title {
+        border: 1px solid #B9B9B9;
+        background: #ccc;
+        /**обычный фон для браузеров, которые не поддерживают градиент**/
+        background: linear-gradient(#CACACA, #E8E8E8);
+        /**градиентный фон**/
+        padding: 10px;
+        /**внутренний отступ**/
+        text-decoration: none;
+        /**убираем подчёркивание у ссылки**/
+        color: #000;
+        /**цвет текста ссылки**/
+        display: block;
+        /**делаем ссылку на всю ширину**/
+      }
+    </style>
+
+  </div>
+</body>
+
+</html>
