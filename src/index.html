@@ -66,9 +66,9 @@
 
     <h2>Аналог</h2>
 
-    <div class="details" role="group">
+    <div class="details details-visible" role="group">
 
-      <button class="summary summary-visible">закрыть</button>
+      <button class="summary details-visible">закрыть</button>
 
       <div class="details__content">
         <p>This is text.</p>
@@ -99,26 +99,43 @@
       }
 
       .details__content {
-        display: none;
+        overflow: hidden;
+        opacity: 0;
+        max-height: 0;
+        transition: max-height 200ms, opacity 200ms;
       }
 
-      .summary-visible::before {
+      .details-visible .summary::before {
         content: '▼';
       }
 
-      .summary-visible + .details__content {
-        display: block;
+      .details-visible > .details__content {
+        overflow: auto;
+        opacity: 1;
+        max-height: 500px;
+      }
+
+      .details-hidde  > .details__content {
+        display: none;
       }
     </style>
 
     <script>
       document.querySelector('.summary').addEventListener('click', function() {
-        if(this.classList.contains('summary-visible')) {
-          this.classList.remove('summary-visible')
-          this.innerHTML = 'открыть';
-        } else {
-          this.classList.add('summary-visible')
-          this.innerHTML = 'закрыть';
+        let parentBlock = this.parentNode;
+        if(parentBlock.classList.contains('details-visible')) {
+          parentBlock.classList.remove('details-visible');
+          parentBlock.querySelector('.summary').innerHTML = 'открыть';
+          setTimeout(function() {
+            parentBlock.classList.add('details-hidde');
+          }, 200)
+        } 
+        else {
+          parentBlock.classList.remove('details-hidde');
+          parentBlock.querySelector('.summary').innerHTML = 'закрыть';
+          setTimeout(function() {
+            parentBlock.classList.add('details-visible');
+          }, 5)
         }
       })
     </script>
