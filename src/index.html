@@ -13,7 +13,8 @@
     }
 
     h1,
-    h2 {
+    h2,
+    h3 {
       text-align: center;
     }
 
@@ -45,86 +46,85 @@
       transform: translate(-50%, -50%) rotate(-5deg);
     }
   </style>
-
-  <script src="./js/jquery.min.js"></script>
 </head>
 
 <body>
   <div class="wrap">
     <h1>примеры спойлеров и кастомный &lt;details&gt;</h1>
 
-    <h2>&lt;details&gt;</h2>
+    <h2>html5 спойлер</h2>
+    <h3>&lt;details&gt;</h3>
     <details>
-      скрытый текст
+      <p>This is text.</p>
     </details>
 
-    <h2>&lt;details&gt; &lt;summary&gt;</h2>
-    <details>
+    <h3>&lt;details&gt; &lt;summary&gt;</h3>
+    <details open>
       <summary>summary</summary>
-      скрытый текст
+      <p>This is text.</p>
     </details>
 
-    <h2>&lt;div&gt; &lt;a&gt;</h2>
-    <div class="spoiler-block del">
-      <a href="#" class="spoiler-title">неправильный спойлер</a>
-      <div class="spoiler-content">
-        даже не стал переделывать на ванильный js
+    <h2>Аналог</h2>
+
+    <div class="details" role="group">
+
+      <button class="summary summary-visible">закрыть</button>
+
+      <div class="details__content">
+        <p>This is text.</p>
       </div>
+
     </div>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('.spoiler-title').click(function () {
-          $(this).parent().children('div.spoiler-content').toggle('fast');
-          return false;
-        });
-      });
-    </script>
+
     <style>
-      .spoiler-content {
-        display: none;
-        /**скрываем блок контента спойлера**/
-        padding: 15px 20px;
-        /**добавляем внутренний отступ**/
-      }
-
-      /**Стили блока с текстом внутри спойлера**/
-      .spoiler-content {
-        display: none;
-        /**скрываем блок контента спойлера**/
-        padding: 15px 20px;
-        /**добавляем внутренний отступ**/
-        border: 1px solid #ccc;
-        /**рамка блока контента спойлера**/
-        margin-top: 5px;
-        /**отступ сверху**/
-        background: #F0F0F0;
-        /**фон блока контента спойлера**/
-      }
-
-      /**Стили блока оборачивающего каждый блок**/
-      .spoiler-block {
-        margin-top: 10px;
-      }
-
-      /**Стили кнопки спойлера**/
-      .spoiler-title {
-        border: 1px solid #B9B9B9;
-        background: #ccc;
-        /**обычный фон для браузеров, которые не поддерживают градиент**/
-        background: linear-gradient(#CACACA, #E8E8E8);
-        /**градиентный фон**/
-        padding: 10px;
-        /**внутренний отступ**/
-        text-decoration: none;
-        /**убираем подчёркивание у ссылки**/
-        color: #000;
-        /**цвет текста ссылки**/
+      .summary {
+        appearance: none;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
         display: block;
-        /**делаем ссылку на всю ширину**/
+        width: 100%;
+        max-width: 100%;
+        text-align: left;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+      }
+
+      .summary::before {
+        content: '►';
+      }
+
+      .details__content {
+        display: none;
+      }
+
+      .summary-visible::before {
+        content: '▼';
+      }
+
+      .summary-visible + .details__content {
+        display: block;
       }
     </style>
 
-  </div>
+    <script>
+      document.querySelector('.summary').addEventListener('click', function() {
+        if(this.classList.contains('summary-visible')) {
+          this.classList.remove('summary-visible')
+          this.innerHTML = 'открыть';
+        } else {
+          this.classList.add('summary-visible')
+          this.innerHTML = 'закрыть';
+        }
+      })
+    </script>
+
+    <hr>
+</div>
 </body>
 
 </html>
