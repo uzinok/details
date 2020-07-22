@@ -52,31 +52,27 @@
   <div class="wrap">
     <h1>примеры спойлеров и кастомный &lt;details&gt;</h1>
 
-    <h2>html5 спойлер</h2>
-    <h3>&lt;details&gt;</h3>
-    <details>
-      <p>This is text.</p>
-    </details>
-
-    <h3>&lt;details&gt; &lt;summary&gt;</h3>
-    <details open>
-      <summary>summary</summary>
-      <p>This is text.</p>
-    </details>
-
     <h2>Аналог</h2>
 
     <div class="details details-visible" role="group">
 
-      <button class="summary details-visible">закрыть</button>
+      <p>Эй, жлоб! Где туз? Прячь юных съёмщиц в шкаф.</p>
+
+      <button class="summary details-visible" aria-label="подробнее"></button>
 
       <div class="details__content">
-        <p>This is text.</p>
+        <p>33 буквы. По преданию, придумана профессором комбинаторики Санкт-Петербургского государственного
+          университета. Прислал Виктор Баргачев</p>
       </div>
 
     </div>
 
     <style>
+      .details {
+        position: relative;
+        padding-right: 68px;
+      }
+
       .summary {
         appearance: none;
         padding: 0;
@@ -86,16 +82,37 @@
         border-radius: 0;
         background-color: transparent;
         display: block;
-        width: 100%;
-        max-width: 100%;
-        text-align: left;
-        font-family: inherit;
-        font-size: inherit;
-        font-weight: inherit;
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .summary::after,
+      .summary::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 2px;
+        background-color: rgb(36, 36, 36);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transition: transform 200ms;
+      }
+
+      .summary::after {
+        transform: translate(-50%, -50%);
+      }
+
+      .details-visible .summary::before {
+        transform: translate(-50%, -50%) rotate(0deg);
       }
 
       .summary::before {
-        content: '►';
+        transform: translate(-50%, -50%) rotate(270deg);
       }
 
       .details__content {
@@ -105,43 +122,51 @@
         transition: max-height 200ms, opacity 200ms;
       }
 
-      .details-visible .summary::before {
-        content: '▼';
-      }
-
-      .details-visible > .details__content {
+      .details-visible>.details__content {
         overflow: auto;
         opacity: 1;
         max-height: 500px;
       }
 
-      .details-hidde  > .details__content {
+      .details-hidde>.details__content {
         display: none;
       }
     </style>
 
     <script>
-      document.querySelector('.summary').addEventListener('click', function() {
+      document.querySelector('.summary').addEventListener('click', function () {
         let parentBlock = this.parentNode;
-        if(parentBlock.classList.contains('details-visible')) {
+        if (parentBlock.classList.contains('details-visible')) {
           parentBlock.classList.remove('details-visible');
-          parentBlock.querySelector('.summary').innerHTML = 'открыть';
-          setTimeout(function() {
+          setTimeout(function () {
             parentBlock.classList.add('details-hidde');
           }, 200)
-        } 
-        else {
+        } else {
           parentBlock.classList.remove('details-hidde');
-          parentBlock.querySelector('.summary').innerHTML = 'закрыть';
-          setTimeout(function() {
+          setTimeout(function () {
             parentBlock.classList.add('details-visible');
           }, 5)
         }
       })
     </script>
+    <hr>
+
+    <h2>html5 спойлер</h2>
+    <h3>&lt;details&gt;</h3>
+    <details>
+      <p>This is text.</p>
+    </details>
+    <hr>
+    <h3>&lt;details&gt; &lt;summary&gt;</h3>
+    <details>
+      <summary>summary</summary>
+      <p>This is text.</p>
+    </details>
+
+
 
     <hr>
-</div>
+  </div>
 </body>
 
 </html>
