@@ -24,41 +24,43 @@
       padding: 0 15px;
       box-sizing: border-box;
     }
-
-    .del {
-      position: relative;
-    }
-
-    .del::before,
-    .del::after {
-      content: '';
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: red;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(5deg);
-    }
-
-    .del::after {
-      transform: translate(-50%, -50%) rotate(-5deg);
-    }
   </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
   <div class="wrap">
     <h1>примеры спойлеров и кастомный &lt;details&gt;</h1>
 
+    <h3>&lt;details&gt; &lt;summary&gt;</h3>
+    <details>
+      <summary>summary</summary>
+
+      <div class="details_hide">
+        <p>This is text.</p>
+      </div>
+
+    </details>
+    <hr>
+
+    <h2>html5 спойлер</h2>
+    <h3>&lt;details&gt;</h3>
+    <details>
+
+      <div class="details_hide">
+        <p>This is text.</p>
+      </div>
+
+    </details>
+    <hr>
+
     <h2>Аналог</h2>
 
-    <div class="details details-visible" role="group">
+    <div class="details" role="group">
 
       <p>Эй, жлоб! Где туз? Прячь юных съёмщиц в шкаф.</p>
 
-      <button class="summary details-visible" aria-label="подробнее"></button>
+      <button class="summary" aria-label="подробнее"></button>
 
       <div class="details__content">
         <p>33 буквы. По преданию, придумана профессором комбинаторики Санкт-Петербургского государственного
@@ -150,23 +152,9 @@
       })
     </script>
     <hr>
-
-    <h2>html5 спойлер</h2>
-    <h3>&lt;details&gt;</h3>
-    <details>
-      <p>This is text.</p>
-    </details>
-    <hr>
-    <h3>&lt;details&gt; &lt;summary&gt;</h3>
-    <details>
-      <summary>summary</summary>
-      <p>This is text.</p>
-    </details>
-
-
-
-    <hr>
   </div>
+
+  <script src="./js/main-debug.js"></script>
 </body>
 
 </html>

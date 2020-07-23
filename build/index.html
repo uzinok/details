@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Document</title><style>body {
+      margin: 0;
+      padding: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      text-align: center;
+    }
+
+    .wrap {
+      max-width: 768px;
+      margin: 0 auto;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }</style><link rel="stylesheet" href="css/style.css"></head><body><div class="wrap"><h1>примеры спойлеров и кастомный &lt;details&gt;</h1><h3>&lt;details&gt; &lt;summary&gt;</h3><details><summary>summary</summary><div class="details_hide"><p>This is text.</p></div></details><hr><h2>html5 спойлер</h2><h3>&lt;details&gt;</h3><details><div class="details_hide"><p>This is text.</p></div></details><hr><h2>Аналог</h2><div class="details" role="group"><p>Эй, жлоб! Где туз? Прячь юных съёмщиц в шкаф.</p><button class="summary" aria-label="подробнее"></button><div class="details__content"><p>33 буквы. По преданию, придумана профессором комбинаторики Санкт-Петербургского государственного университета. Прислал Виктор Баргачев</p></div></div><style>.details {
+        position: relative;
+        padding-right: 68px;
+      }
+
+      .summary {
+        appearance: none;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        display: block;
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .summary::after,
+      .summary::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 2px;
+        background-color: rgb(36, 36, 36);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transition: transform 200ms;
+      }
+
+      .summary::after {
+        transform: translate(-50%, -50%);
+      }
+
+      .details-visible .summary::before {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      .summary::before {
+        transform: translate(-50%, -50%) rotate(270deg);
+      }
+
+      .details__content {
+        overflow: hidden;
+        opacity: 0;
+        max-height: 0;
+        transition: max-height 200ms, opacity 200ms;
+      }
+
+      .details-visible>.details__content {
+        overflow: auto;
+        opacity: 1;
+        max-height: 500px;
+      }
+
+      .details-hidde>.details__content {
+        display: none;
+      }</style><script>document.querySelector('.summary').addEventListener('click', function () {
+        let parentBlock = this.parentNode;
+        if (parentBlock.classList.contains('details-visible')) {
+          parentBlock.classList.remove('details-visible');
+          setTimeout(function () {
+            parentBlock.classList.add('details-hidde');
+          }, 200)
+        } else {
+          parentBlock.classList.remove('details-hidde');
+          setTimeout(function () {
+            parentBlock.classList.add('details-visible');
+          }, 5)
+        }
+      })</script><hr></div><script src="./js/main-debug.js"></script></body></html>

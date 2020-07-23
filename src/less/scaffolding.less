@@ -1,0 +1,12 @@
+.details_hide {
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transition: max-height 200ms, opacity 200ms;
+}
+
+.details-open .details_hide {
+    overflow: auto;
+    opacity: 1;
+    max-height: 500px;
+}

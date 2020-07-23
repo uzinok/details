@@ -1,0 +1,1 @@
+window.onload=function(){let e=document.querySelectorAll("details");for(let t=0;t<e.length;t++)e[t].addEventListener("click",function(n){this.classList.contains("details-open")?(n.preventDefault(),this.classList.remove("details-open"),setTimeout(function(){e[t].open=!1},200)):setTimeout(function(){console.log(t),e[t].classList.add("details-open")},5)})};
