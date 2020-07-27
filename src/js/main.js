@@ -33,11 +33,16 @@ window.onload = function () {
             if (!('open' in arrDetails[i])) {
                 // тут необходимо вместо summary сделать button 
                 let button = document.createElement('button');
+                // перенесли текст
                 button.innerHTML = elemSummary.innerHTML;
+                // перенесли классы
                 button.setAttribute('class', elemSummary.getAttribute('class'));
                 // elemSummary = button;
+                // добавили в спойлер кнопку
                 arrDetails[i].insertBefore(button, elemSummary);
+                // удалили старый summary
                 arrDetails[i].removeChild(elemSummary);
+
                 elemSummary = button;
             }
         }
