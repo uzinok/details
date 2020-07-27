@@ -1,7 +1,7 @@
 window.onload = function () {
     // добавим стили для анимации
     let styleD = document.createElement('style');
-    styleD.innerHTML = '.details_hide{overflow:hidden;opacity:0;max-height:0;transition:max-height 200ms,opacity 200ms}.details-visible .details_hide{overflow:auto;opacity:1;max-height:190px}.details_h .details_hide{display:none}';
+    styleD.innerHTML = '.details_hide{overflow:hidden;opacity:0;max-height:0;-webkit-transition:max-height 200ms,opacity 200ms;-o-transition:max-height 200ms,opacity 200ms;transition:max-height 200ms,opacity 200ms}.details-visible .details_hide{overflow:auto;opacity:1;max-height:190px}.details_h .details_hide{display:none}details>button{border-radius:none;border:0;-webkit-box-shadow:none;box-shadow:none;background:0 0;font-family:none;font-size:none;padding:0;text-align:inherit}';
     // добавим стили в head
     document.head.appendChild(styleD);
     // ролучаем все спойлеры
@@ -21,7 +21,7 @@ window.onload = function () {
             else
                 // или содаем summary
                 elemSummary = document.createElement('summary');
-                // добавим текст по умолчанию
+            // добавим текст по умолчанию
             elemSummary.innerHTML = 'подробнее';
             // добавляем текущему спойлеру
             arrDetails[i].insertBefore(elemSummary, arrDetails[i].querySelector('.details_hide'))
@@ -30,9 +30,16 @@ window.onload = function () {
         else {
             elemSummary = arrDetails[i].querySelector('summary');
             // если нет поддержки details 
-            if (!('open' in arrDetails[i]))
-            // тут необходимо вместо summary сделать button 
-                elemSummary.setAttribute('tabindex', 1)
+            if (!('open' in arrDetails[i])) {
+                // тут необходимо вместо summary сделать button 
+                let button = document.createElement('button');
+                button.innerHTML = elemSummary.innerHTML;
+                button.setAttribute('class', elemSummary.getAttribute('class'));
+                // elemSummary = button;
+                arrDetails[i].insertBefore(button, elemSummary);
+                arrDetails[i].removeChild(elemSummary);
+                elemSummary = button;
+            }
         }
 
         // если спойлер открыт
