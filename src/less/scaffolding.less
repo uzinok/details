@@ -1,4 +1,4 @@
-.details_hide {
+.details__content {
     // скрываем контент для анимации
     overflow: hidden;
     opacity: 0;
@@ -7,14 +7,14 @@
     transition: max-height 200ms, opacity 200ms;
 }
 
-.details-visible .details_hide {
+.details-visible .details__content {
     // показываем контент с анимацией
     overflow: auto;
     opacity: 1;
     max-height: 190px;
 }
 
-.details_h .details_hide {
+.details_h .details__content {
     // для старых браузеров скрываем от доступа с клавиатуры к интерактивным элементам
     display: none;
 }

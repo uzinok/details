@@ -37,33 +37,34 @@
 
 <body>
   <div class="wrap">
-    <h1>примеры спойлеров и кастомный &lt;details&gt;</h1>
+    <!-- <h1>примеры спойлеров и кастомный &lt;details&gt;</h1> -->
+    <h1>пример спойлера &lt;details&gt;</h1>
 
-    <h3>&lt;details&gt; &lt;summary&gt;</h3>
-    <details open>
-      <summary class="hi sumary">summary</summary>
+    <h2>&lt;details&gt; &lt;summary&gt;</h2>
+    <details class="details" open>
+      <summary class="details__sumary">summary</summary>
 
-      <div class="details_hide">
+      <div class="details__content">
         <p>This is text.</p>
       </div>
 
     </details>
     <hr>
 
-    <h2>html5 спойлер</h2>
-    <h3>&lt;details&gt;</h3>
-    <details>
+    <!-- <h2>html5 спойлер</h2> -->
+    <h2>&lt;details&gt;</h2>
+    <details class="details">
 
-      <div class="details_hide">
+      <div class="details__content">
         <p>This is text.</p>
       </div>
 
     </details>
     <hr>
 
-    <h2>Аналог</h2>
+    <!-- <h2>Аналог</h2> -->
 
-    <div class="details" role="group">
+    <!-- <div class="details" role="group">
 
       <p>Эй, жлоб! Где туз? Прячь юных съёмщиц в шкаф.</p>
 
@@ -74,9 +75,9 @@
           университета. Прислал Виктор Баргачев</p>
       </div>
 
-    </div>
+    </div> -->
 
-    <style>
+    <!-- <style>
       .details {
         position: relative;
         padding-right: 68px;
@@ -140,9 +141,9 @@
       .details-hidde>.details__content {
         display: none;
       }
-    </style>
+    </style> -->
 
-    <script>
+    <!-- <script>
       document.querySelector('.summary').addEventListener('click', function () {
         let parentBlock = this.parentNode;
         if (parentBlock.classList.contains('details-visible')) {
@@ -157,8 +158,8 @@
           }, 5)
         }
       })
-    </script>
-    <hr>
+    </script> -->
+    <!-- <hr> -->
   </div>
 
   <script src="./js/main-debug.js"></script>

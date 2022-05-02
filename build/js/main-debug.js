@@ -1,11 +1,11 @@
 window.onload = function () {
     // добавим стили для анимации
     let styleD = document.createElement('style');
-    styleD.innerHTML = '.details_hide{overflow:hidden;opacity:0;max-height:0;-webkit-transition:max-height 200ms,opacity 200ms;-o-transition:max-height 200ms,opacity 200ms;transition:max-height 200ms,opacity 200ms}.details-visible .details_hide{overflow:auto;opacity:1;max-height:190px}.details_h .details_hide{display:none}details>button{border-radius:none;border:0;-webkit-box-shadow:none;box-shadow:none;background:0 0;font-family:none;font-size:none;padding:0;text-align:inherit}';
+    styleD.innerHTML = '.details__content{overflow:hidden;opacity:0;max-height:0;-webkit-transition:max-height 200ms,opacity 200ms;-o-transition:max-height 200ms,opacity 200ms;transition:max-height 200ms,opacity 200ms}.details-visible .details__content{overflow:auto;opacity:1;max-height:190px}.details_h .details__content{display:none}details>button{border-radius:none;border:0;-webkit-box-shadow:none;box-shadow:none;background:0 0;font-family:none;font-size:none;padding:0;text-align:inherit}';
     // добавим стили в head
     document.head.appendChild(styleD);
     // ролучаем все спойлеры
-    let arrDetails = document.querySelectorAll('details');
+    let arrDetails = document.querySelectorAll('.details');
 
     // перебираем все спойлееры для получения необходимых элементов и прослушивания событий
     for (let i = 0; i < arrDetails.length; i++) {
@@ -24,14 +24,14 @@ window.onload = function () {
             // добавим текст по умолчанию
             elemSummary.innerHTML = 'подробнее';
             // добавляем текущему спойлеру
-            arrDetails[i].insertBefore(elemSummary, arrDetails[i].querySelector('.details_hide'))
+            arrDetails[i].insertBefore(elemSummary, arrDetails[i].querySelector('.details__content'))
         }
-        // если summary есть - получаем 
+        // если summary есть - получаем
         else {
             elemSummary = arrDetails[i].querySelector('summary');
-            // если нет поддержки details 
+            // если нет поддержки details
             if (!('open' in arrDetails[i])) {
-                // тут необходимо вместо summary сделать button 
+                // тут необходимо вместо summary сделать button
                 let button = document.createElement('button');
                 // перенесли текст
                 button.innerHTML = elemSummary.innerHTML;
@@ -80,7 +80,7 @@ window.onload = function () {
                         parentBlock.open = false;
                 }, 200)
             }
-            // если спойлер закрыт 
+            // если спойлер закрыт
             else {
                 // для старых браузеров удаляем display none для контента
                 parentBlock.classList.remove('details_h');
